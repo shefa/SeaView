@@ -2,7 +2,7 @@ This is SeaView
 ================
 
 We are some highschoolers from Bulgaria who have an idea and spirit, and also we can code.
-The webpage at which you can view the project is http://seaview.zapto.org/
+The webpage at which you can view the project is https://www.googledrive.com/host/0B6Xbr77w5NfReDY4Ym9RWXRKMkU
 
 About SeaView
 ===============================
