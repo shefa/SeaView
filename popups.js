@@ -49,7 +49,7 @@ function createXmlHttpRequest() {
  }
  return null;
 }
-
+var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
 function downloadUrl(url, callback) {
  var status = -1;
  var request = createXmlHttpRequest();
@@ -74,7 +74,7 @@ function downloadUrl(url, callback) {
      }
    }
  }
- request.open('GET', url, true);
+ request.open('GET', cors_api_url + url);
  try {
    request.send(null);
  } catch (e) {
@@ -82,8 +82,25 @@ function downloadUrl(url, callback) {
  }
 }
 
+/*
+
+  function doCORSRequest(url, printResult) {
+    var x = new XMLHttpRequest();
+    x.open('GET', cors_api_url + url);
+    x.onload = x.onerror = function() {
+      printResult(
+        'GET'+ ' ' + url + '\n' +
+        x.status + ' ' + x.statusText + '\n\n' +
+        (x.responseText || '')
+      );
+    };
+	x.send(null);
+  }
+*/
+
 function populateInfoWindow(stn,stnpos,lat,lon,owner,marker) {
-   downloadUrl("https://crossorigin.me/http://www.ndbc.noaa.gov/get_observation.php?station="+stn, function(xml, responseCode) {
+	console.log("getting station info"+stn);
+   downloadUrl("http://www.ndbc.noaa.gov/get_observation.php?station="+stn, function(xml, responseCode) {
       var html = null;
       if (responseCode != 200 && responseCode != 304) {
          html = '<strong>Station '+stn.toUpperCase()+'<br />'+owner+'<br />Location:<\/strong> '+formatLat(lat)+' '+formatLon(lon)+'<br />There are no recent (&lt; 8 hours) meteorological data for this station.<br .>';
