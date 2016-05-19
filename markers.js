@@ -7,7 +7,7 @@ var map;
 function stationData(id, stuff) {
   $.ajax({
     type: 'GET',
-    url: 'https://crossorigin.me/http://www.ndbc.noaa.gov/get_observation.php?station=' + id,
+    url: 'https://jsonp.afeld.me/?url=http://www.ndbc.noaa.gov/get_observation.php?station=' + id,
     success: function( data ) {
   
     var result;
@@ -50,8 +50,8 @@ function addStations() {
 		
 	$.ajax({
     type: 'GET',
-    url: "https://jsonp.afeld.me/?url=http://www.ndbc.noaa.gov/ndbcmapstations.json",
-    //url: "data.json",
+    //url: "https://jsonp.afeld.me/?url=http://www.ndbc.noaa.gov/ndbcmapstations.json",
+    url: "data_new.json",
     success: function( data ) {
       //console.log(stations);
 	    
@@ -70,11 +70,11 @@ function addStations() {
 			},
 			optimized: false
 			});
-			stationData(id,marker);
+			//stationData(id,marker);
 			google.maps.event.addListener(marker, 'click', function() {
             var id = val.id
 			populateInfoWindow(id,"",marker.position.k,marker.position.B,"",marker);
-            stationData(id,marker);
+            //stationData(id,marker);
           
           });
           markers.push(marker);
@@ -83,9 +83,18 @@ function addStations() {
       }
 	  );
 	   markerCluster = new MarkerClusterer(map, markers);
-	   
+	   setTimeout(finish_load, 5000);
+	  
     }
   })
+}
+
+function finish_load()
+{
+	if(doneCreatingMap==false){
+		doneCreatingMap=true;
+		initialize();
+	}
 }
 
 function newMarker(position) {
