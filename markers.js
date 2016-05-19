@@ -7,7 +7,7 @@ var map;
 function stationData(id, stuff) {
   $.ajax({
     type: 'GET',
-    url: 'http://crossorigin.me/http://www.ndbc.noaa.gov/get_observation.php?station=' + id,
+    url: 'https://crossorigin.me/http://www.ndbc.noaa.gov/get_observation.php?station=' + id,
     success: function( data ) {
   
     var result;
