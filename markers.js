@@ -7,7 +7,7 @@ var map;
 function stationData(id, stuff) {
   $.ajax({
     type: 'GET',
-    url: 'http://crossorigin.me/http://www.ndbc.noaa.gov/get_observation_as_xml.php?station=' + id,
+    url: 'http://crossorigin.me/http://www.ndbc.noaa.gov/get_observation.php?station=' + id,
     success: function( data ) {
   
     var result;
@@ -50,8 +50,8 @@ function addStations() {
 		
 	$.ajax({
     type: 'GET',
-    //url: "http://www.corsproxy.com/www.ndbc.noaa.gov/ndbcmapstations.json",
-    url: "data.json",
+    url: "https://jsonp.afeld.me/?url=http://www.ndbc.noaa.gov/ndbcmapstations.json",
+    //url: "data.json",
     success: function( data ) {
       //console.log(stations);
 	    
