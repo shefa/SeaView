@@ -102,15 +102,6 @@ function initialize() {
   hideLogo();
   createCurrents();
 
-
-
-  // Bias the SearchBox results towards places that are within the bounds of the
-  // current map's viewport.
-  google.maps.event.addListener(map, 'bounds_changed', function() {
-    var bounds = map.getBounds();
-    searchBox.setBounds(bounds);
-  });
-  
   //lets_hope();
   //Init_SPIDER();
   
